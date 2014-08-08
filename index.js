@@ -16,7 +16,7 @@ var config = {
     validateConfig = defineOpts({
         groupId       : 'string   - the Maven group id.',
         buildDir      : '?|string - build directory. default "' + config.buildDir + '".',
-        finalName     : '?|stringde - the final name of the file created when the built project is packaged. default "' +
+        finalName     : '?|string - the final name of the file created when the built project is packaged. default "' +
                         config.finalName + '"',
         type          : '?|string - "jar" or "war". default "' + config.type + '".',
         fileEncoding  : '?|string - valid file encoding. default "' + config.fileEncoding + '"'
@@ -74,13 +74,13 @@ function mvnArgs (repoId, isSnapshot) {
 
 function check (err, stdout, stderr) {
     if (err) {
+      console.log('Error =', err.code);
         if (err.code === 'ENOENT') {
             console.error(cmd + ' command not found. Do you have it in your PATH?');
         } else {
             console.error(stdout);
             console.error(stderr);
         }
-        process.exit(1);
     }
 }
 
